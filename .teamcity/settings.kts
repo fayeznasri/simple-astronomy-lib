@@ -91,6 +91,8 @@ object SimpleAstronomyLib_Build : BuildType({
             goals = "test"
             workingDir = "src"
             mavenVersion = auto()
+            userSettingsSelection = "settings.xml"
+            jdkHome = "%env.JDK_19_0%"
             coverageEngine = idea {
                 includeClasses = "%build.vcs.number%*"
                 excludeClasses = "%build.vcs.number%"
