@@ -1,9 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.*
-import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
-import jetbrains.buildServer.configs.kotlin.buildSteps.maven
 import jetbrains.buildServer.configs.kotlin.buildSteps.nunit
-import jetbrains.buildServer.configs.kotlin.failureConditions.BuildFailureOnText
-import jetbrains.buildServer.configs.kotlin.failureConditions.failOnText
 import jetbrains.buildServer.configs.kotlin.projectFeatures.buildReportTab
 import jetbrains.buildServer.configs.kotlin.projectFeatures.githubIssues
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
@@ -70,66 +66,8 @@ object SimpleAstronomyLib : Project({
 
     vcsRoot(SimpleAstronomyLib_HttpsGithubComFayeznasriSimpleAstronomyLibRefsHeadsMaster)
 
-    buildType(SimpleAstronomyLib_Build)
-
     template(SimpleAstronomyLib_BuildTest)
     template(SimpleAstronomyLib_Template)
-})
-
-object SimpleAstronomyLib_Build : BuildType({
-    name = "Build"
-
-    buildNumberPattern = "1.%build.counter%"
-
-    params {
-        param("newParam", "env%")
-        param("JDK_19_0", "full moon")
-        checkbox("env.JDK_19_0", "",
-                  checked = "true")
-        param("env.MY_PARAMETER", "env%JDK_19_0%")
-    }
-
-    vcs {
-        root(SimpleAstronomyLib_HttpsGithubComFayeznasriSimpleAstronomyLibRefsHeadsMaster)
-    }
-
-    steps {
-        maven {
-            name = "TestMaven"
-            id = "RUNNER_16"
-            goals = "test"
-            workingDir = ".teamcity%env.JDK_19_0%"
-            mavenVersion = auto()
-            userSettingsSelection = "settings.xml"
-            jdkHome = "%env.JDK_19_0%"
-            coverageEngine = idea {
-                includeClasses = "%build.vcs.number%*"
-                excludeClasses = "%build.vcs.number%"
-            }
-        }
-    }
-
-    triggers {
-        vcs {
-            id = "TRIGGER_9"
-        }
-    }
-
-    failureConditions {
-        failOnText {
-            id = "BUILD_EXT_2"
-            conditionType = BuildFailureOnText.ConditionType.CONTAINS
-            pattern = "${SimpleAstronomyLib_HttpsGithubComFayeznasriSimpleAstronomyLibRefsHeadsMaster.paramRefs.buildVcsNumber}"
-            failureMessage = "failure"
-            reverse = false
-        }
-    }
-
-    features {
-        perfmon {
-            id = "perfmon"
-        }
-    }
 })
 
 object SimpleAstronomyLib_BuildTest : Template({
