@@ -88,6 +88,10 @@ object SimpleAstronomyLib_Build : BuildType({
         maven {
             name = "TestMaven"
             id = "RUNNER_16"
+
+            conditions {
+                equals("teamcity.build.branch.is_default", "true")
+            }
             goals = "test"
             workingDir = "src"
             mavenVersion = auto()
