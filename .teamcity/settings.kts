@@ -132,6 +132,11 @@ object SimpleAstronomyLib_BuildTest : Template({
     description = "Template_config"
 
     publishArtifacts = PublishMode.SUCCESSFUL
+
+    params {
+        checkbox("newParam", "env%build.counter%",
+                  checked = "true", unchecked = "false")
+    }
 })
 
 object SimpleAstronomyLib_Template : Template({
