@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.perfmon
 import jetbrains.buildServer.configs.kotlin.buildSteps.maven
+import jetbrains.buildServer.configs.kotlin.buildSteps.nunit
 import jetbrains.buildServer.configs.kotlin.failureConditions.BuildFailureOnText
 import jetbrains.buildServer.configs.kotlin.failureConditions.failOnText
 import jetbrains.buildServer.configs.kotlin.projectFeatures.buildReportTab
@@ -136,6 +137,15 @@ object SimpleAstronomyLib_BuildTest : Template({
     params {
         checkbox("newParam", "env%build.counter%",
                   checked = "true", unchecked = "false")
+    }
+
+    steps {
+        nunit {
+            name = "BuildTest"
+            id = "RUNNER_17"
+            nunitPath = "%teamcity.tool.NUnit.Console.3.15.0%"
+            includeTests = "test%newParam%"
+        }
     }
 })
 
