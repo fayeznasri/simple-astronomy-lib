@@ -57,7 +57,6 @@ project {
     }
 
     subProject(SimpleAstronomyLib)
-    subProject(SimpleAstronomyLib1)
 }
 
 
@@ -107,25 +106,6 @@ object SimpleAstronomyLib_Template : Template({
 })
 
 object SimpleAstronomyLib_HttpsGithubComFayeznasriSimpleAstronomyLibRefsHeadsMaster : GitVcsRoot({
-    name = "https://github.com/fayeznasri/simple-astronomy-lib#refs/heads/master"
-    url = "https://github.com/fayeznasri/simple-astronomy-lib"
-    branch = "refs/heads/master"
-    branchSpec = "refs/heads/*"
-    authMethod = password {
-        userName = "fayeznasri"
-        password = "credentialsJSON:60efae0b-6aed-4d13-8406-370fcb0b302a"
-    }
-    param("oauthProviderId", "tc-cloud-github-connection")
-})
-
-
-object SimpleAstronomyLib1 : Project({
-    name = "Simple Astronomy Lib (1)"
-
-    vcsRoot(SimpleAstronomyLib1_HttpsGithubComFayeznasriSimpleAstronomyLibRefsHeadsMaster)
-})
-
-object SimpleAstronomyLib1_HttpsGithubComFayeznasriSimpleAstronomyLibRefsHeadsMaster : GitVcsRoot({
     name = "https://github.com/fayeznasri/simple-astronomy-lib#refs/heads/master"
     url = "https://github.com/fayeznasri/simple-astronomy-lib"
     branch = "refs/heads/master"
