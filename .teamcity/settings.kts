@@ -83,6 +83,7 @@ object SimpleAstronomyLib_Build : BuildType({
 
     params {
         param("newParam", "env%")
+        param("JDK_19_0", "full moon")
         checkbox("env.JDK_19_0", "",
                   checked = "true")
         param("env.MY_PARAMETER", "env%JDK_19_0%")
