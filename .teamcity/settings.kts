@@ -84,7 +84,7 @@ object SimpleAstronomyLib_Build : BuildType({
     params {
         param("newParam", "env%")
         param("env.MY_PARAMETER", "env%JDK_19_0%")
-        text("JDK_19_0", "%MY_PARAMETER%", label = "MY_PARAMETER", allowEmpty = true)
+        param("JDK_19_0", "")
     }
 
     vcs {
