@@ -81,10 +81,6 @@ object SimpleAstronomyLib_Build : BuildType({
 
     buildNumberPattern = "1.%build.counter%"
 
-    params {
-        param("env.JDK_19_0", "%newParam%")
-    }
-
     vcs {
         root(SimpleAstronomyLib_HttpsGithubComFayeznasriSimpleAstronomyLibRefsHeadsMaster)
     }
