@@ -82,6 +82,7 @@ object SimpleAstronomyLib_Build : BuildType({
     buildNumberPattern = "1.%build.counter%"
 
     params {
+        param("newParam", "env%build.counter%")
         text("JDK_19_0", "%MY_PARAMETER%", label = "MY_PARAMETER", allowEmpty = true)
     }
 
