@@ -125,10 +125,6 @@ object SimpleAstronomyLib_Build : BuildType({
             id = "perfmon"
         }
     }
-
-    requirements {
-        matches("teamcity.agent.jvm.os.family", "Mac OS", "RQ_4")
-    }
 })
 
 object SimpleAstronomyLib_BuildTest : Template({
